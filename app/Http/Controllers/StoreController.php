@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-class StoreController extends Controller
+use Illuminate\Http\Request;
+
+class StoreController extends ApiController
 {
   /**
    * @return Response
@@ -19,5 +21,16 @@ class StoreController extends Controller
   public function getByStoreId(int $storeId)
   {
     return 'storeId : ' . $storeId;
+  }
+
+  /**
+   * @param Request $request
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   */
+  public function store(Request $request)
+  {
+    $storeName = $request->input('storeName');
+
+    return $this->respond($storeName);
   }
 }
