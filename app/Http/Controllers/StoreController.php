@@ -33,4 +33,14 @@ class StoreController extends ApiController
 
     return $this->respond($storeName);
   }
+
+  /**
+   * @param Request $request
+   * @param int $storeId
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   */
+  public function update(Request $request, int $storeId)
+  {
+    return $this->respond('update store : ' . $storeId);
+  }
 }
