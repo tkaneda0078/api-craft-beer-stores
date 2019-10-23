@@ -43,4 +43,14 @@ class StoreController extends ApiController
   {
     return $this->respond('update store : ' . $storeId);
   }
+
+  /**
+   * @param int $storeId
+   * @return string
+   * @todo responseを考える
+   */
+  public function destroy(int $storeId)
+  {
+    return 'removed successfully';
+  }
 }
