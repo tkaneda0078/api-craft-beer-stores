@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StoreController extends ApiController
 {
@@ -35,10 +36,19 @@ class StoreController extends ApiController
   {
     $storeName = $request->input('storeName');
 
-    // todo: urlを新規リソースの詳細情報を設定する
-    $headers = ['Location' => 'https://translate.google.com/?source=gtx'];
+    DB::beginTransaction();
+    try {
+      // todo: DB登録処理
 
-    $this->setStatusCode(201);
+      // todo: urlを新規リソースの詳細情報を設定する
+      $headers = ['Location' => 'https://translate.google.com/?source=gtx'];
+      $this->setStatusCode(201);
+      DB::commit();
+    } catch (\Exception $e) {
+      // todo: ログ出力
+      $this->setStatusCode(409);
+      DB::rollBack();
+    }
 
     return $this->jsonResponse([], $headers);
   }
@@ -50,10 +60,19 @@ class StoreController extends ApiController
    */
   public function update(Request $request, int $storeId)
   {
-    // todo: urlを新規リソースの詳細情報を設定する
-    $headers = ['Location' => 'https://translate.google.com/?source=gtx'];
+    DB::beginTransaction();
+    try {
+      // todo: DB更新処理
 
-    $this->setStatusCode(204);
+      // todo: urlを新規リソースの詳細情報を設定する
+      $headers = ['Location' => 'https://translate.google.com/?source=gtx'];
+      $this->setStatusCode(204);
+      DB::commit();
+    } catch (\Exception $e) {
+      // todo: ログ出力
+      $this->setStatusCode(409);
+      DB::rollBack();
+    }
 
     return $this->jsonResponse([], $headers);
   }
@@ -65,7 +84,17 @@ class StoreController extends ApiController
    */
   public function destroy(int $storeId)
   {
-    $this->setStatusCode(204);
+    DB::beginTransaction();
+    try {
+      // todo: 削除処理
+
+      $this->setStatusCode(204);
+      DB::commit();
+    } catch (\Exception $e) {
+      // todo: ログ出力
+      $this->setStatusCode(500);
+      DB::rollBack();
+    }
 
     return 'removed successfully';
   }
