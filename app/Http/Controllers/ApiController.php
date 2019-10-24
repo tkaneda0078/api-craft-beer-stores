@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class ApiController
@@ -37,29 +36,25 @@ class ApiController extends BaseController
   }
 
   /**
-   * jsonデータを返す
-   *
    * @param array $data
    * @param array $headers
-   * @return JsonResponse
+   * @return \Illuminate\Http\JsonResponse
    */
-  public function respond($data, $headers = [])
+  public function jsonResponse(array $data, array $headers = [])
   {
-    return new JsonResponse($data, $this->getStatusCode(), $headers);
+    return response()->json($data, $this->getStatusCode(), $headers);
   }
 
   /**
-   * jsonデータとエラーメッセージを返す
-   *
-   * @param string t$errors
+   * @param array $errors
    * @param array $headers
-   * @return JsonResponse
+   * @return \Illuminate\Http\JsonResponse
    */
-  public function respondWithErrors($errors, $headers = [])
+  public function jsonResponseWithErrors(array $errors, $headers = [])
   {
     $data = ['error' => $errors];
 
-    return new JsonResponse($data, $this->getStatusCode(), $headers);
+    return response()->json($data, $this->getStatusCode(), $headers);
   }
 
   /**
