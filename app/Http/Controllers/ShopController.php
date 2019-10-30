@@ -17,14 +17,12 @@ class ShopController extends ApiController
   }
 
   /**
-   * @param int $storeId
+   * @param int $shopId
    * @return \Illuminate\Http\JsonResponse
    */
-  public function getByStoreId(int $storeId)
+  public function getByshopId(int $shopId)
   {
-    $store = ['id' => $storeId, 'name' => 'test1'];
-
-    return $this->jsonResponse($store);
+    return $this->jsonResponse(Shop::find($shopId)->toArray());
   }
 
   /**
