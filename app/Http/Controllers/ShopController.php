@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Models\Shop;
 
-class StoreController extends ApiController
+class ShopController extends ApiController
 {
   /**
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    */
   public function getAll()
   {
-    $storeList = [['id' => 1, 'name' => 'test1'], ['id' => 2, 'name' => 'test2']];
-
-    return $this->jsonResponse($storeList);
+    return $this->jsonResponse(Shop::all()->toArray());
   }
 
   /**
