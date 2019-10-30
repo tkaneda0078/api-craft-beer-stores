@@ -31,7 +31,7 @@ class ShopController extends ApiController
    */
   public function store(Request $request)
   {
-    $storeName = $request->input('storeName');
+    $shopName = $request->input('shopName');
 
     DB::beginTransaction();
     try {
@@ -52,10 +52,10 @@ class ShopController extends ApiController
 
   /**
    * @param Request $request
-   * @param int $storeId
+   * @param int $shopId
    * @return \Illuminate\Http\JsonResponse
    */
-  public function update(Request $request, int $storeId)
+  public function update(Request $request, int $shopId)
   {
     DB::beginTransaction();
     try {
@@ -75,11 +75,11 @@ class ShopController extends ApiController
   }
 
   /**
-   * @param int $storeId
+   * @param int $shopId
    * @return string
    * @todo responseを考える
    */
-  public function destroy(int $storeId)
+  public function destroy(int $shopId)
   {
     DB::beginTransaction();
     try {
